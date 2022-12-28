@@ -67,6 +67,7 @@ export const themeSettings = (mode) => {
             background: {
               main: shades.blue[900],
               mainTwo: shades.blue[800],
+              mainThree: shades.red[800],
             },
             icon: {
               main: shades.red[600],
@@ -85,6 +86,7 @@ export const themeSettings = (mode) => {
             background: {
               main: shades.blue[100],
               mainTwo: shades.blue[200],
+              mainThree: shades.blue[700],
             },
             icon: {
               main: shades.grey[400],

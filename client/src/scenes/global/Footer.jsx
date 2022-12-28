@@ -7,9 +7,10 @@ const Footer = () => {
   const dark = theme.palette.background.main;
 
   return (
-    <Box padding="40px 0" backgroundColor={dark}>
+    <Box padding="40px 0" backgroundColor={dark} width="100%">
       <Box
-        width="80%"
+        width="85%"
+        padding="1% 5%"
         margin="auto"
         display="flex"
         justifyContent="space-between"

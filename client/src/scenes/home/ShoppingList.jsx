@@ -47,9 +47,8 @@ const ShoppingList = () => {
   return (
     <Box
       width="85%"
-      margin="80px auto"
+      margin="80px auto 0 auto"
       padding="5rem"
-      borderRadius="5px"
       backgroundColor={dark}
     >
       <Typography variant="h2" textAlign="center">

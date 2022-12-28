@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { IconButton, Box, Typography, Button, Tabs, Tab } from "@mui/material";
+import {
+  IconButton,
+  Box,
+  Typography,
+  Button,
+  Tabs,
+  Tab,
+  useTheme,
+} from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { shades } from "../../theme";
 import { addToCart } from "../../state";
 import Item from "../../components/Item";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const ItemDetails = () => {
   const dispatch = useDispatch();
@@ -16,6 +23,8 @@ const ItemDetails = () => {
   const [count, setCount] = useState(1);
   const [item, setItem] = useState(null);
   const [items, setItems] = useState([]);
+  const theme = useTheme();
+  const dark = theme.palette.text.main;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -49,24 +58,35 @@ const ItemDetails = () => {
   }, [itemId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Box width="80%" m="80px auto">
+    <Box width="80%" m="80px auto" p="5%">
       <Box display="flex" flexWrap="wrap" columnGap="40px">
         {/* IMAGES */}
-        <Box flex="1 1 40%" mb="40px">
+        <Box flex="1 1 40%">
           <img
             alt={item?.name}
-            width="100%"
-            height="100%"
+            width="75%"
+            height="75%"
             src={`http://localhost:1337${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "cover" }}
           />
         </Box>
 
         {/* ACTIONS */}
         <Box flex="1 1 50%" mb="40px">
           <Box display="flex" justifyContent="space-between">
-            <Box>Home/Item</Box>
-            <Box>Prev Next</Box>
+            <Box>Prev // Next</Box>
+            <Box>
+              <Link
+                to="/"
+                style={{
+                  textDecoration: "none",
+                  color: dark,
+                  fontWeight: "bold",
+                }}
+              >
+                Home
+              </Link>
+            </Box>
           </Box>
 
           <Box m="65px 0 25px 0">
@@ -86,16 +106,16 @@ const ItemDetails = () => {
               p="2px 5px"
             >
               <IconButton onClick={() => setCount(Math.max(count - 1, 0))}>
-                <RemoveIcon />
+                <RemoveIcon style={{ color: dark }} />
               </IconButton>
               <Typography sx={{ p: "0 5px" }}>{count}</Typography>
               <IconButton onClick={() => setCount(count + 1)}>
-                <AddIcon />
+                <AddIcon style={{ color: dark }} />
               </IconButton>
             </Box>
             <Button
               sx={{
-                backgroundColor: "#222222",
+                backgroundColor: dark,
                 color: "white",
                 borderRadius: 0,
                 minWidth: "150px",
@@ -111,7 +131,12 @@ const ItemDetails = () => {
               <FavoriteBorderOutlinedIcon />
               <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
             </Box>
-            <Typography>CATEGORIES: {item?.attributes?.category}</Typography>
+            <Typography>
+              CATEGORIES:{" "}
+              <span style={{ textTransform: "capitalize" }}>
+                {item?.attributes?.category}
+              </span>
+            </Typography>
           </Box>
         </Box>
       </Box>

@@ -5,14 +5,18 @@ import {
   Typography,
   IconButton,
   useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 import { useState } from "react";
 
 const Subscribe = () => {
   const [email, setEmail] = useState("");
+  const isMobileScreen = useMediaQuery("(max-width: 815px)");
   const theme = useTheme();
   const dark = theme.palette.background.mainTwo;
+  const darkTwo = theme.palette.background.mainThree;
+  const textLight = theme.palette.text.light;
 
   return (
     <Box
@@ -32,7 +36,7 @@ const Subscribe = () => {
         <IconButton>
           <MarkEmailReadOutlinedIcon
             fontSize="large"
-            style={{ color: "#000" }}
+            style={{ color: textLight }}
           />
         </IconButton>
       </Box>
@@ -44,7 +48,7 @@ const Subscribe = () => {
         m="15px auto"
         display="flex"
         alignItems="center"
-        width="35%"
+        width={isMobileScreen ? "75%" : "35%"}
         backgroundColor="#F5F5F5"
         borderRadius="5px"
       >
@@ -58,9 +62,11 @@ const Subscribe = () => {
         <Typography
           sx={{
             p: "10px",
+            borderRadius: "5px",
             ":hover": { cursor: "pointer" },
-            color: "#222",
+            color: dark,
             fontWeight: "bold",
+            backgroundColor: textLight,
           }}
         >
           Subscribe

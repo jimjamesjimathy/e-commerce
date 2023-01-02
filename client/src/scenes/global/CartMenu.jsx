@@ -122,7 +122,7 @@ const CartMenu = () => {
             </FlexBox>
             <Button
               sx={{
-                color: "white",
+                backgroundColor: "black",
                 borderRadius: 0,
                 minWidth: "100%",
                 padding: "20px 40px",
